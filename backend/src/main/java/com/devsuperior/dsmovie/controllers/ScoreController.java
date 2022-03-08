@@ -1,5 +1,6 @@
 package com.devsuperior.dsmovie.controllers;
 
+import com.devsuperior.dsmovie.dto.EmailDTO;
 import com.devsuperior.dsmovie.dto.MovieDTO;
 import com.devsuperior.dsmovie.dto.ScoreDTO;
 import com.devsuperior.dsmovie.services.ScoreService;
@@ -19,6 +20,7 @@ public class ScoreController {
     @PutMapping
     public MovieDTO saveScore(@RequestBody ScoreDTO dto) {
         MovieDTO movieDTO = service.saveScore(dto);
+        service.publishEmail(dto.getEmail());
         return movieDTO;
     }
 }
